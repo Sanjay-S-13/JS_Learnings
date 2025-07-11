@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>AdvancedFunctions</title>
+    </head>
+    <body>
+        <script>
+            function func1(){
+                console.log('hello1');
+            }
+            func1();
+
+
+            //anonymous function
+            let funcvar = function (){
+                    console.log("insideTheVar");
+            };
+
+            console.log(funcvar);
+            console.log(typeof funcvar);
+            funcvar();
+
+
+            const obj1 = {
+                num : 1,
+                fun : function(){ //Anonymous Function
+                    console.log('hellow');
+                }
+            };
+            obj1.fun();
+
+
+            //Parameters
+            function display(p1){
+                console.log('hello10');
+            }
+
+            display(function(){
+                console.log('hellowwfunc')
+            });
+
+
+            setTimeout(function(){
+                console.log('timeout');
+                console.log('timeout2');
+            },3000);
+
+            console.log('next line');
+
+            setInterval(function(){
+                console.log('interval');
+            },3000);
+
+            console.log('nextLine2');
+        </script>        
+    </body>
+</html>

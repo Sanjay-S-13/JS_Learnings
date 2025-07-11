@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TodoList</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .todo-grid,
+            .input-grid{
+                display: grid;
+                grid-template-columns: 200px 150px 100px;
+                column-gap: 10px;
+                row-gap: 10px;
+            }
+            .input-grid{
+                margin-bottom: 10px;
+            }
+            .input-css,
+            .date-css{
+                font-size: 20px;
+                padding: 10px;
+                border-radius: 5px;
+                border-style: solid;
+            }
+            .date-css{
+                color: gray;
+            }
+            .add-css{
+                border: none;
+                background-color: green;
+                color: white;
+                border-radius: 10px;
+            }
+            .todotask-css,
+            .tododate-css{
+                font-family: cursive;
+            }
+            .todo-del-button{
+                color: red;
+                background-color: white;
+                border: none;
+                margin-top: 10px;
+            }
+
+
+            
+        </style>
+    </head>
+    <body>
+        <p>Todo List Practice 1</p>
+
+        <div class="todo-grid input-grid">
+            <input class="js-inputarea input-css" type="text" id="tasks" placeholder="Todo name">
+
+            <input class="js-inputdate date-css" type="date">
+
+            <button class="js-add add-css"
+                onclick="printing()">
+                Add
+            </button>
+        </div>
+
+        <div class = 'js-pageprinting' style="color: rgb(0, 0, 0);"></div>
+
+
+        <script>
+        
+        const todoList = [{name:'make dinner',
+                            dueDate:"12-05-2025",
+                            },
+                            {
+                            name:'washing',
+                            dueDate:"13-05-2025"}
+                        ];
+
+
+            renderTodoArray();
+            //TO SHOW IN A CONSOLE
+            function renderTodoArray(){
+            
+            let todoListHTML = '';
+
+            for(let i =0 ; i<todoList.length;i++){
+                const todoObject = todoList[i];
+                //const name = todoObject.name;
+                //const dueDate = todoObject.dueDate;
+
+                const {name , dueDate} = todoObject;
+
+                const htmlvar = `<div class="todo-grid">
+                                <div class="todotask-css">${name}</div>
+                                <div class="tododate-css"> ${dueDate}</div>
+                                <button class="todo-del-button" onclick="
+                                todoList.splice(${i},1);
+                                renderTodoArray();
+                                ">Delete</button>
+                `;
+                    todoListHTML+= htmlvar;
+            }
+
+
+
+            //on the page printing
+            document.querySelector('.js-pageprinting').innerHTML  = todoListHTML;
+
+        }
+
+            //prints in console and adding to the array (both)
+            function printing(){
+                const input = document.querySelector('.js-inputarea');
+                const name = input.value;
+
+                const dateInput = document.querySelector('.js-inputdate');
+                const dueDate = dateInput.value;
+                console.log(name)
+
+
+                todoList.push({
+                    //name:name,      
+                    //dueDate:dueDate
+                    name,
+                    dueDate
+                });
+
+                input.name='';
+                renderTodoArray();
+            }            
+        </script>
+    </body>
+</html>

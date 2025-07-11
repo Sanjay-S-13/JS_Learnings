@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>DOM-Projects</title>
+        <style>
+            body{
+                font-family: Arial, Helvetica, sans-serif;
+            }
+            .js-Subs-button{
+                border-radius: 20px;
+                border: none;
+                color: white;
+                background-color: black;
+                padding: 10px 15px;
+                font-weight: 800;
+                margin-bottom: 30px;
+            }
+            .input{
+                border-radius: 2px;
+                border-color: black;
+                border-style: solid;
+                border-width: thin;
+                border-color: rgb(230, 230, 230);
+                padding: 10px 10px;
+            }
+            .calculate{
+                background-color: #008000;
+                color: white;
+                border: none;
+                padding: 10px;
+                cursor: pointer;
+            }
+            .is-subscribed{
+                background-color: rgb(240,240,240);
+                color : black;
+            }
+        </style>
+    </head>
+    <body>
+        <p>YouTube Subscribe Button</p>
+        <button class = 'js-Subs-button';
+            onclick="subcribe();">       
+            Subscribe
+        </button>
+
+        <p>Amazon Shipping Calculator</p>
+
+         <p>Orders under $40 = +$10 shipping.</p>
+         <p>Orders over $40 = FREE shipping.</p>
+
+        <input class = "input" placeholder="Cost of Order"
+         onkeydown="if(event.key==='Enter'){
+            calculate();
+         }">
+
+         <button class="calculate"
+        onclick="
+        calculate();
+        ">Calculate
+        </button>
+
+        <p class="js-total-cost"></p>
+
+        <script>
+            function subcribe(){
+                const element = document.querySelector('.js-Subs-button');
+                if(element.innerHTML === 'Subscribe'){
+                    element.innerHTML = 'Subscribed'
+                    element.classList.add('is-subscribed');
+                }
+                else {
+                    element.innerHTML = 'Subscribe';
+                    element.classList.remove('is-subscribed');
+                }
+            }
+
+            function calculate(){
+                const inputElement = document.querySelector(`.input`);
+                let cost = Number(inputElement.value);//whenever you get the value from the dom you get the value as a string
+
+                if(cost<40){
+                    cost = cost+10;
+                }
+                document.querySelector('.js-total-cost').innerHTML = `$${cost}`;
+
+            }
+        </script>
+    </body>
+</html>

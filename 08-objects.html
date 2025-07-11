@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Objects</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+        
+        <script>
+            const product = {
+                id : 611222205039,//it is a (property : value) pair
+                marks : 95.8,
+                name : 'Sanjay S'
+            }
+
+            console.log(product);
+            console.log(product.name);
+
+            product.attendance = 72;
+            console.log(product);
+
+            delete product.attendance;
+            console.log(product);
+            
+
+
+            const product2 = {
+
+                name : "shirt",
+
+                'delivery-time': '9 AM',
+
+                rating : {
+                    stars : 4.5,
+                    count : 76
+                },
+
+                func : function doMath(){       //METHOD
+                    console.log(2*2);
+                }
+
+            }
+
+            //for example of method
+            console.log(typeof console);//object
+            console.log(typeof console.log);//function
+            //this is a method
+
+            console.log(product2.name);
+            console.log(product2['name']);
+
+            //console.log(product2.delivery-time); it shows error because sometimes it take - as a negative in math operations
+            console.log(product2['delivery-time']);
+
+            console.log(product2.rating.stars);
+
+            product2.func();
+
+            console.log(JSON.stringify(product2));
+            const jsonString = JSON.stringify(product2);
+            console.log(JSON.parse(jsonString));
+
+            
+
+
+            //Pass by reference or copy by reference
+
+            const project = {
+                id : 1234
+            }
+
+            const project2 = project;
+
+            project.id = 5678;
+
+            console.log(project.id);
+            console.log(project2.id);
+
+            const project3 = {
+                id : 5678,
+                name : 'sanjay'
+            }
+
+            console.log(project===project3)
+
+
+            //const id = project3.id;  these two lines are doing same
+            const{id,name} = project3; //deconstructing...    here id and name are variables
+            console.log(id);
+            console.log(name)
+
+
+
+
+            const project4 = {
+                //newone : id    //calling id (project3 variable)
+                id,//another way for above line
+                
+
+                // dummyfunction : function function1{
+                //     console.log("hello");
+                // }
+
+
+                dummyfunction() {
+                        console.log("hello");
+                }
+
+            };
+
+            console.log(project4);
+
+            project4.dummyfunction();
+
+        </script>
+    </body>
+</html>

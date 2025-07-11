@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Booleans</title>
+        <style>
+            
+        </style>
+    </head>
+    <body>
+
+        <script>
+            console.log(5>2+2);
+
+            console.log(5=='5.00');
+
+            console.log(5 === '5');
+
+            if(false){
+                console.log('hii');
+            }
+            else{
+                console.log('bye')
+            }
+
+            const age = 16;
+
+            if(18 <= age){
+                console.log("yes approved");
+            }
+            else if(age=>16){
+                console.log("almost");
+            }
+            else{
+                console.log("no not approved")
+            }
+
+
+
+            //ternary operator
+            let result =  2>6 ? 'truthy' : 'falsy' ;
+            console.log(result);
+
+
+            //guard operator
+            let message = 5 && 'i am true';
+            console.log(message);
+
+            let message1 = false && 'i am true';
+            console.log(message1);
+
+        
+            //default operator
+            let ex = undefined || 'INR';
+            console.log(ex);
+
+            let ex1 = 'USD' || 'INR';
+            console.log(ex1);
+        </script>
+    </body>
+</html>

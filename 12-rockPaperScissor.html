@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock Paper Scissors</title>
+        <style>
+            body{
+                background-color: rgba(25,25,25);
+                color: white;
+                font-family: arial;
+            }
+            .titles{
+                font-size: 30px;
+                font-weight: bold;
+            }
+            .move-icon{
+                height: 50px;
+                background-color: rgba(25,25,25);
+                border-style: none;
+                border: none;
+            }
+            .move-button{
+                background-color: transparent;
+                border: 3px solid white;
+                width: 120px;
+                height: 120px;
+                margin-right: 10px;
+                border-radius: 100%;
+                cursor: pointer;
+            }
+            .result{
+                font-size: 25px;
+                font-weight: bold;
+                margin-top: 50px;
+            }
+            .score{
+                margin-top: 60px;
+            }
+            .reset-score-button,
+            .auto-play-button{
+                background-color: white;
+                border: none;
+                font-size: 15px;
+                padding: 8px 15px;
+                cursor: pointer;
+            }
+        </style>
+    </head>
+    <body>
+        <p class ='titles'>Rock Paper Scissors</p>
+
+        <button
+            onclick = "
+                playGame('Rock');"
+                class="move-button">
+                <img src="rock-emoji.png" class="move-icon">
+        </button>
+
+        <button
+            onclick = "
+                playGame('Paper');
+            "class="move-button">
+            <img src="paper-emoji.png" class="move-icon">
+        </button>
+
+        <button
+            onclick = "
+                playGame('Scissors');
+            "class="move-button">
+            <img src="scissors-emoji.png" class="move-icon">
+        </button>
+
+        <p class="js-result result"></p>
+
+        <p class="js-moves"></p>
+
+        <p class="js-score score"></p>
+
+        <button 
+            onclick="
+                score.wins=0;
+                score.ties=0;
+                score.losses=0;
+                localStorage.removeItem('score');
+
+                updateScoreElement();"
+                class="reset-score-button">
+                
+            Reset Button
+        </button>
+        <button class="auto-play-button" onclick="autoplay()">AutoPlay</button>
+
+        <script>
+
+                let score = JSON.parse(localStorage.getItem('score'))
+                ||  {
+                        wins : 0,
+                        losses : 0,
+                        ties : 0
+                    };
+                
+                    updateScoreElement();
+                    
+                /*
+                if(!score){
+                    score = {
+                        wins : 0,
+                        losses : 0,
+                        ties : 0
+                    };
+                }*/
+
+                    
+                    let isautoPlaying = false;
+                    let intervalId;
+
+                function autoplay(){
+
+                    if(!isautoPlaying){
+                    intervalId = setInterval(function(){
+                        const playerMove = predictCompNum();
+                        playGame(playerMove);
+                    },1000);
+                    isautoPlaying = true;
+                }
+                else{
+                    clearInterval(intervalId);
+                    isautoPlaying = false;
+                }
+            }
+                
+            function playGame(playerMove){
+
+                const compMove = predictCompNum();
+                let result = '';
+
+                if(playerMove === 'Scissors'){
+                    
+                    if(compMove === 'Scissors'){
+                        result = 'tie';
+                    }
+                    else if(compMove === 'Rock'){
+                        result = 'Lose';
+                    }
+                    else{
+                        result = 'Win';
+                    }
+                }
+
+                else if(playerMove === 'Paper'){
+                    
+                    if(compMove === 'Paper'){
+                        result  = 'tie';
+                    }
+                    else if(compMove === 'Scissors'){
+                        result  = 'Lose';
+                    }
+                    else{
+                        result  = 'Win';
+                    }
+                }
+
+                else{
+
+                    if(compMove === 'Rock'){
+                        result = 'tie';
+                    }
+                    else if(compMove === 'Paper'){
+                        result = 'Lose';
+                    }
+                    else{
+                        result = 'Win';
+                    }
+                        }
+
+                if(result === 'Win'){
+                    score.wins +=1;
+                }
+                else if(result === 'Lose'){
+                    score.losses +=1;
+                }
+                else{
+                    score.ties+=1;
+                }             
+
+                localStorage.setItem('score',JSON.stringify(score));
+                updateScoreElement();
+                document.querySelector('.js-result').innerHTML = `Result is : ${result}`;
+
+                document.querySelector('.js-moves').innerHTML = `You <img src="${playerMove}-emoji.png" class="move-icon"> <img src="${compMove}-emoji.png" class="move-icon" >computer`;
+                
+            }
+
+            
+            function updateScoreElement(){
+                document.querySelector('.js-score').innerHTML=`
+                    Wins : ${score.wins} || Losses : ${score.losses} || Ties : ${score.ties}`;
+            }
+
+            
+            function predictCompNum(){
+
+                let compMove1 = '';
+                
+                let randomnumber = Math.random();
+
+                if(randomnumber>=0 && randomnumber<1/3){
+                    compMove1 = 'Rock';
+                }
+                else if(randomnumber>=1/3 && randomnumber<2/3){
+                    compMove1 = 'Paper';
+                }
+                else{
+                    compMove1 = 'Scissors';
+                }
+
+                return compMove1;
+            }
+            
+        </script>
+    </body>
+</html>

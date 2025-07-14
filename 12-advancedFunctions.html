@@ -7,6 +7,23 @@
         <button onclick = "" class="eventlistener">event listener example </button>
         <script>
 
+            //EVENT LISTENER EXAMPLE  from this
+            const buttonElem = document.querySelector('.eventlistener');
+            
+            const eventListner = () => {
+                console.log('iam inside event listener');
+            }
+            buttonElem.addEventListener('click' , eventListner());
+
+            buttonElem.removeEventListener('click' , eventListner());
+
+            buttonElem.addEventListener('click' , () => {
+                console.log('click2');
+            })
+
+            //to this
+
+            
             function func1(){
                 console.log('hello1');
             }

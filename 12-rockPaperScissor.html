@@ -18,7 +18,9 @@
                 border-style: none;
                 border: none;
             }
-            .move-button{
+            .rock-button,
+            .paper-button,
+            .scissor-button{
                 background-color: transparent;
                 border: 3px solid white;
                 width: 120px;
@@ -49,23 +51,17 @@
         <p class ='titles'>Rock Paper Scissors</p>
 
         <button
-            onclick = "
-                playGame('Rock');"
-                class="move-button">
+                class="rock-button">
                 <img src="rock-emoji.png" class="move-icon">
         </button>
 
         <button
-            onclick = "
-                playGame('Paper');
-            "class="move-button">
+            class="paper-button">
             <img src="paper-emoji.png" class="move-icon">
         </button>
 
         <button
-            onclick = "
-                playGame('Scissors');
-            "class="move-button">
+            class="scissor-button">
             <img src="scissors-emoji.png" class="move-icon">
         </button>
 
@@ -109,7 +105,7 @@
                     };
                 }*/
 
-                    
+        
                     let isautoPlaying = false;
                     let intervalId;
 
@@ -122,13 +118,42 @@
                     },1000);
                     isautoPlaying = true;
                 }
-                
+
                 else{
                     clearInterval(intervalId);
                     isautoPlaying = false;
                 }
             }
+
+
+            document.querySelector('.rock-button')
+            .addEventListener('click' , () => {
+                playGame('Rock');
+            });
+            document.querySelector('.paper-button')
+            .addEventListener('click' , () => {
+                playGame('Paper');
+            });
+            document.querySelector('.scissor-button')
+            .addEventListener('click' , () => {
+                playGame('Scissors');
+            });
                 
+
+
+            document.body.addEventListener('keydown' , (event) => {
+                if(event.key === 'r'){
+                    playGame('Rock');
+                }
+                else if(event.key === 'p'){
+                    playGame('Paper');
+                }
+                else if(event.key === 's'){
+                    playGame('Scissors');
+                }
+            });
+
+            
             function playGame(playerMove){
 
                 const compMove = predictCompNum();

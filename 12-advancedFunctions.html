@@ -4,7 +4,9 @@
         <title>AdvancedFunctions</title>
     </head>
     <body>
+        <button onclick = "" class="eventlistener">event listener example </button>
         <script>
+
             function func1(){
                 console.log('hello1');
             }
@@ -38,7 +40,7 @@
             display(function(){
                 console.log('hellowwfunc')
             });
-
+ 
 
             setTimeout(function(){
                 console.log('timeout');
@@ -52,6 +54,56 @@
             },3000);
 
             console.log('nextLine2');
+
+            //forEach 
+
+
+            let  arr1 = ["hi",
+            "hello",
+            "greet",
+            "you",
+            "better person",
+            'sanjay'] 
+            .forEach(function(value,i){
+
+                if(value === 'greet'){
+                    return;
+                }
+                //if you need to break then 
+                //the better way is move to the usual for loop
+                console.log(i);
+                console.log(value);
+            })
+
+            //ARROW FUNCTION
+
+            const arrowfunction = () => {
+                const sol = console.log(1+2);
+                return sol;
+            }
+
+
+            const arrowfunction2 = (param1,param2) => {
+                const sol = param1 + param2;
+                return sol;
+            }
+            console.log(arrowfunction2(1,2));
+            
+
+            const oneline = () => 2+3;
+            console.log(oneline());
+
+            //Object creation using arrow
+
+            const object1 = { 
+                thismethod : () => {
+
+                },
+                method2(){
+
+                }
+            };
+            
         </script>        
     </body>
 </html>

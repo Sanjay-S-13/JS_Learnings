@@ -116,12 +116,13 @@
                 function autoplay(){
 
                     if(!isautoPlaying){
-                    intervalId = setInterval(function(){
+                    intervalId = setInterval( () => {
                         const playerMove = predictCompNum();
                         playGame(playerMove);
                     },1000);
                     isautoPlaying = true;
                 }
+                
                 else{
                     clearInterval(intervalId);
                     isautoPlaying = false;
